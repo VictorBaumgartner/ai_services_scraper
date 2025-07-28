@@ -11,7 +11,8 @@ def extract_service_names(input_file):
         list: List of all Service_Name values
     """
     try:
-        with open(input_file, 'r') as f:
+        # Explicitly specify UTF-8 encoding when opening the file
+        with open(input_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
         service_names = []
