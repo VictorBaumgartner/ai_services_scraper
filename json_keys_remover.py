@@ -10,7 +10,8 @@ def remove_keys_from_json(input_file, output_file, keys_to_remove):
         keys_to_remove (list): List of keys to remove from the JSON
     """
     try:
-        with open(input_file, 'r') as f:
+        # Explicitly specify UTF-8 encoding when opening the file
+        with open(input_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
         # Process the data (works for both list of dicts or single dict)
@@ -22,8 +23,9 @@ def remove_keys_from_json(input_file, output_file, keys_to_remove):
             for key in keys_to_remove:
                 data.pop(key, None)
         
-        with open(output_file, 'w') as f:
-            json.dump(data, f, indent=2)
+        # Also specify UTF-8 encoding when writing the file
+        with open(output_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
         
         print(f"Successfully removed keys and saved to {output_file}")
     
